@@ -1,8 +1,8 @@
 {
-   "authors": [{
+   "author": {
 	"name": "David Roth",
 	"email": "david.m.roth+chrome_ext@gmail.com"
-    }],
+    },
     "app": {
       "launch": {
         "container": "panel",

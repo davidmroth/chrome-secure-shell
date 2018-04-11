@@ -58,14 +58,14 @@ function Crostini() {
 
   this.buildCommandButtons = (toolBar, btn) => {
     let cmdList = {
-      "startChroot": [
+      "container": [
         "vmc start " + this.pref.get('chroot-image-name'),
         "run_container.sh --container_name=" + this.pref.get('chroot-image-name') + " --user=" + this.pref.get('chroot-user-name') + " --shell"
       ]
     };
 
     for (let cmdName in cmdList) {
-      btn.innerText = "Start " + cmdName;
+      btn.innerText = "Run " + cmdName;
 
       btn.onclick = ()=> {
         for (let cmd in cmdList[cmdName])
