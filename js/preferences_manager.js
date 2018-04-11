@@ -14,6 +14,14 @@ var nassh = {};
 nassh.v2 = !!chrome.app.window;
 
 /**
+ * Non-null if nassh is running as an extension.
+ */
+nassh.browserAction =
+    window.browser && browser.browserAction ? browser.browserAction :
+    window.chrome && chrome.browserAction ? chrome.browserAction :
+    null;
+
+/**
  * Register a static initializer for nassh.*.
  *
  * @param {function} onInit The function lib.init() wants us to invoke when
@@ -25,6 +33,85 @@ lib.registerInit('nassh', function(onInit) {
 
   onInit();
 });
+
+
+/**
+ * Create a new window to the options page for customizing preferences.
+ */
+nassh.openOptionsPage = function() {
+  if (window.chrome && chrome.runtime && chrome.runtime.openOptionsPage)
+    chrome.runtime.openOptionsPage();
+  else
+    window.open('/html/crosh_preferences_editor.html');
+};
+
+/**
+ * Export the current list of nassh connections, and any hterm profiles
+ * they reference.
+ *
+ * This is method must be given a completion callback because the hterm
+ * profiles need to be loaded asynchronously.
+ *
+ * @param {function(Object)} Callback to be invoked when export is complete.
+ *   The callback will receive a plan js object representing the state of
+ *   nassh preferences.  The object can be passed back to
+ *   nassh.importPreferences.
+ */
+nassh.exportPreferences = function(onComplete) {
+  var pendingReads = 0;
+  var rv = {};
+
+  var onReadStorage = function(profile, prefs) {
+    rv.hterm[profile] = prefs.exportAsJson();
+    if (--pendingReads < 1)
+      onComplete(rv);
+  };
+
+  rv.magic = 'nassh-prefs';
+  rv.version = 1;
+
+  var nasshPrefs = new nassh.PreferenceManager();
+  nasshPrefs.readStorage(function() {
+    // Export all the connection settings.
+    rv.nassh = nasshPrefs.exportAsJson();
+
+    // Save all the profiles.
+    rv.hterm = {};
+    hterm.PreferenceManager.listProfiles((profiles) => {
+      profiles.forEach((profile) => {
+        rv.hterm[profile] = null;
+        const prefs = new hterm.PreferenceManager(profile);
+        prefs.readStorage(onReadStorage.bind(null, profile, prefs));
+        pendingReads++;
+      });
+
+      if (profiles.length == 0)
+        onComplete(rv);
+    });
+  });
+};
+
+/**
+ * Return a formatted message in the current locale.
+ *
+ * @param {string} name The name of the message to return.
+ * @param {Array} opt_args The message arguments, if required.
+ */
+nassh.msg = function(name, opt_args) {
+  if (!chrome.i18n)
+    return name;
+
+  var rv = chrome.i18n.getMessage(name, opt_args);
+  if (!rv)
+    console.log('Missing message: ' + name);
+
+  // Since our translation process only preserves \n (and discards \r), we have
+  // to manually insert them here ourselves.  Any place we display translations
+  // should be able to handle \r correctly, and keeps us from having to remember
+  // to do it whenever we need to.  If a situation comes up where we don't want
+  // the \r, we can reevaluate this decision then.
+  return rv.replace(/\n/g, '\n\r');
+};
 
 /**
  * Return a formatted message in the current locale.
@@ -96,57 +183,31 @@ nassh.importFiles = function(fileSystem, dest, fileList,
   }
 };
 
+
 /**
- * Export the current list of nassh connections, and any hterm profiles
- * they reference.
+ * PreferenceManager subclass managing global NaSSH preferences.
  *
- * This is method must be given a completion callback because the hterm
- * profiles need to be loaded asynchronously.
- *
- * @param {function(Object)} Callback to be invoked when export is complete.
- *   The callback will receive a plan js object representing the state of
- *   nassh preferences.  The object can be passed back to
- *   nassh.importPreferences.
+ * This is currently just an ordered list of known connection profiles.
  */
-nassh.exportPreferences = function(onComplete) {
-  var pendingReads = 0;
-  var rv = {};
+nassh.PreferenceManager = function(opt_storage) {
+  var storage = opt_storage || nassh.defaultStorage;
+  lib.PreferenceManager.call(this, storage, '/nassh/');
 
-  var onReadStorage = function(terminalProfile, prefs) {
-    rv.hterm[terminalProfile] = prefs.exportAsJson();
-    if (--pendingReads < 1)
-      onComplete(rv);
-  };
-
-  rv.magic = 'nassh-prefs';
-  rv.version = 1;
-
-  var nasshPrefs = new nassh.PreferenceManager();
-  nasshPrefs.readStorage(function() {
-    rv.nassh = nasshPrefs.exportAsJson();
-    rv.hterm = {};
-
-    var profileIds = nasshPrefs.get('profile-ids');
-    if (profileIds.length == 0) {
-      onComplete(rv);
-      return;
-    }
-
-    for (var i = 0; i < profileIds.length; i++) {
-      var nasshProfilePrefs = nasshPrefs.getChild('profile-ids', profileIds[i]);
-      var terminalProfile = nasshProfilePrefs.get('terminal-profile');
-      if (!terminalProfile)
-        terminalProfile = 'default';
-
-      if (!(terminalProfile in rv.hterm)) {
-        rv.hterm[terminalProfile] = null;
-
-        var prefs = new hterm.PreferenceManager(terminalProfile);
-        prefs.readStorage(onReadStorage.bind(null, terminalProfile, prefs));
-        pendingReads++;
-      }
-    }
+  this.defineChildren('profile-ids', function(parent, id) {
+    return new nassh.ProfilePreferenceManager(parent, id);
   });
+
+  this.definePreferences([
+    /**
+     * The last version we showed release notes for.
+     */
+    ['welcome/notes-version', ''],
+
+    /**
+     * How many times we've shown the current release notes.
+     */
+    ['welcome/show-count', 0],
+  ]);
 };
 
 /**
@@ -184,30 +245,6 @@ nassh.importPreferences = function(prefsObject, opt_onComplete) {
   });
 };
 
-/**
- * Create a new window to the options page for customizing preferences.
- */
-nassh.openOptionsPage = function() {
-  if (nassh.v2) {
-    var optionsWindow = chrome.app.window.get('options_page');
-    // If the options window is not open, opens it, else brings it to the
-    // foreground.
-    if (!optionsWindow) {
-      chrome.app.window.create('/html/nassh_preferences_editor.html', {
-        'bounds': {
-          'width': 700,
-          'height': 800
-        },
-        'id': 'options_page'
-      });
-    } else {
-      optionsWindow.focus();
-    }
-  } else {
-    window.open('/html/nassh_preferences_editor.html');
-  }
-};
-
 nassh.reloadWindow = function() {
   if (!nassh.v2) {
     document.location.hash = '';
@@ -221,12 +258,14 @@ nassh.reloadWindow = function() {
   }
 };
 
-/**
- * Register this extension to handle ssh:// URIs.
- */
-nassh.registerProtocolHandler = function() {
-  navigator.registerProtocolHandler(
-    'ssh',
-    chrome.runtime.getURL('html/nassh.html#uri:%s'),
-    chrome.runtime.getManifest().name);
-};
+// Copyright (c) 2012 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+'use strict';
+
+lib.rtdep('lib.f');
+
+nassh.PreferenceManager.prototype = Object.create(lib.PreferenceManager.prototype);
+nassh.PreferenceManager.constructor = nassh.PreferenceManager;
+

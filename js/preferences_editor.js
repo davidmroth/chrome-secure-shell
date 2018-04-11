@@ -6,6 +6,7 @@
 
 lib.rtdep('lib.colors', 'hterm.PreferenceManager');
 
+
 // CSP means that we can't kick off the initialization from the html file,
 // so we do it like this instead.
 window.onload = function() {
@@ -18,8 +19,7 @@ window.onload = function() {
         var io = term.io.push();
         io.onVTKeystroke = io.print;
         io.sendString = io.print;
-        io.println('# ' + nassh.msg('WELCOME_VERSION',
-                                    [manifest.name, manifest.version]));
+        io.println('# ' + nassh.msg('WELCOME_VERSION', [manifest.name, manifest.version]));
         io.print('$ ./configure && make && make install');
         term.setCursorVisible(true);
       };
@@ -60,8 +60,8 @@ window.onload = function() {
 
     // Set up reset button.
     document.getElementById('reset').onclick = function() {
-        prefsEditor.resetAll();
-      };
+      prefsEditor.resetAll();
+    };
 
     // Set up profile selection field.
     var profile = document.getElementById('profile');
@@ -125,10 +125,14 @@ nassh.PreferencesEditor.prototype.selectProfile = function(profileId) {
   var prefsEditor = this;
   var prefs = new hterm.PreferenceManager(profileId);
   this.prefs_ = prefs;
+  
+  //TODO: Remove / Debug
+  window.prefs = prefs;
+
   prefs.readStorage(function() {
-      prefs.notifyAll();
-      prefsEditor.syncPage();
-    });
+    prefs.notifyAll();
+    prefsEditor.syncPage();
+  });
 };
 
 /**
@@ -577,9 +581,11 @@ nassh.PreferencesEditor.prototype.createInput = function(key) {
 
 nassh.PreferencesEditor.prototype.getPreferenceDescription = function(key) {
   var entry = hterm.PreferenceManager.defaultPreferences[key];
-  if (entry)
-    return entry[3];
-  return '';
+  if (entry === undefined)
+    return '';
+
+  const id = 'PREF_' + key.replace(/-/g, '_').toUpperCase();
+  return hterm.msg(id, [], entry[3]);
 }
 
 nassh.PreferencesEditor.prototype.getPreferenceType = function(key) {
@@ -659,3 +665,5 @@ nassh.PreferencesEditor.prototype.notify = function(msg, opt_timeout) {
       status.innerHTML = '&nbsp;';
     }, opt_timeout || 1000);
 };
+
+

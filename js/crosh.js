@@ -4,8 +4,10 @@
 
 'use strict';
 
-lib.rtdep('lib.f',
-          'hterm');
+lib.rtdep('lib.f', 'hterm');
+
+var crostini = new Crostini();
+
 
 // CSP means that we can't kick off the initialization from the html file,
 // so we do it like this instead.
@@ -24,11 +26,12 @@ window.onload = function() {
  * @param {Object} argv The argument object passed in from the Terminal.
  */
 function Crosh(argv) {
+  window.crosh_debug = this;
   this.argv_ = argv;
   this.io = null;
   this.keyboard_ = null;
   this.pid_ = -1;
-};
+}
 
 /**
  * The extension id of "crosh_builtin", the version of crosh that ships with
@@ -50,6 +53,7 @@ Crosh.init = function() {
   var terminal = new hterm.Terminal(profileName);
 
   terminal.decorate(document.querySelector('#terminal'));
+  
   terminal.onTerminalReady = function() {
     terminal.keyboard.bindings.addBinding('Ctrl-Shift-P', function() {
       nassh.openOptionsPage();
@@ -59,15 +63,14 @@ Crosh.init = function() {
     terminal.setCursorPosition(0, 0);
     terminal.setCursorVisible(true);
     terminal.runCommandClass(Crosh, document.location.hash.substr(1));
-
     terminal.command.keyboard_ = terminal.keyboard;
   };
 
-  // Useful for console debugging.
-  window.term_ = terminal;
+  /*
   console.log(nassh.msg(
       'CONSOLE_CROSH_OPTIONS_NOTICE',
       ['Ctrl-Shift-P', lib.f.getURL('/html/nassh_preferences_editor.html')]));
+  */
 
   return true;
 };
@@ -97,6 +100,7 @@ Crosh.prototype.onProcessOutput_ = function(pid, type, text) {
     this.exit(0);
     return;
   }
+
   this.io.print(text);
 }
 
@@ -106,25 +110,23 @@ Crosh.prototype.onProcessOutput_ = function(pid, type, text) {
  * This is invoked by the terminal as a result of terminal.runCommandClass().
  */
 Crosh.prototype.run = function() {
-  croshInstance = this;
-  
   this.io = this.argv_.io.push();
 
   if (!chrome.terminalPrivate) {
-    this.io.println("Crosh is not supported on this version of Chrome.");
+    this.io.println(nassh.msg('COMMAND_NOT_SUPPORTED', [this.commandName]));
     this.exit(1);
     return;
   }
 
   this.io.onVTKeystroke = this.io.sendString = this.sendString_.bind(this);
-
   this.io.onTerminalResize = this.onTerminalResize_.bind(this);
-  chrome.terminalPrivate.onProcessOutput.addListener(
-      this.onProcessOutput_.bind(this));
+
+  chrome.terminalPrivate.onProcessOutput.addListener(this.onProcessOutput_.bind(this));
+
   document.body.onunload = this.close_.bind(this);
   chrome.terminalPrivate.openTerminalProcess(this.commandName, (pid) => {
     if (pid == undefined || pid == -1) {
-      this.io.println("Opening crosh process failed.");
+      this.io.println(nassh.msg('COMMAND_STARTUP_FAILED', [this.commandName]));
       this.exit(1);
       return;
     }
@@ -140,79 +142,19 @@ Crosh.prototype.run = function() {
     // Setup initial window size.
     this.onTerminalResize_(this.io.terminal_.screenSize.width,
                            this.io.terminal_.screenSize.height);
-
-    setTimeout(StartCustom, 1000);
   });
+  
+  setTimeout(crostini.init.bind(crostini, this), 1000);
 };
 
-// custom
-var croshInstance;
-function Type(str) {
-  for (let ch of str) {
-    //this.io.onVTKeystroke(ch);
-    croshInstance.io.sendString(ch);
-  }
-}
-function StartCustom() {
-  // intercept typing
-  /*let onVTKeystroke_old = this.io.onVTKeystroke;
-  this.io.onVTKeystroke = function() {
-      let result = onVTKeystroke_old.apply(this, arguments);
-      //alert(new Error().stack);
-      //alert("SendString:" + JSON.stringify(arguments));
-      return result;
-  };*/
-
-  // intercept printing
-  let print_old = croshInstance.io.print;
-  croshInstance.io.print = function(text) {
-      let result = print_old.apply(this, arguments);
-      window.outputText += text;
-      return result;
-  };
-
-  Type(`shell\r`);
-  Type(`sudo edit-chroot -a\r`);
-  setTimeout(()=> {
-    //let outputLines = window.outputText.substr(window.outputText.indexOf("crosh>")).replace(/\r/g, "").split("\n\n");
-    let outputLines = window.outputText.replace(/\r/g, "").split("\n");
-    let chroots = outputLines[3].split(" "); // "chroot1 chroot2" -> ["chroot1", "chroot2"]
-    RefreshUI(chroots);
-  }, 500);
-}
-
-function RefreshUI(chroots) {
-  var toolbar = document.createElement("div");
-  toolbar.id = "toolbar";
-  Object.assign(toolbar.style, {position: "absolute", left: 0, top: 0, right: 0});
-  toolbar.style.height = "30px";
-  toolbar.style.backgroundColor = "rgba(255,255,255,.3)";
-  //document.querySelector("iframe").contentDocument.body.prepend(toolbar);
-  document.querySelector("#terminal").prepend(toolbar);
-
-  //document.querySelector("iframe").contentDocument.getElementById("hterm:row-nodes").style.marginTop = "30px";
-  document.querySelector("iframe").style.top = "30px";
-  document.querySelector("iframe").style.height = "calc(100% - 30px)";
-
-  for (let chroot of chroots) {
-    var button = document.createElement("button");
-    button.innerText = "Start " + chroot;
-    button.onclick = ()=> {
-      //Type("sudo enter-chroot -n " + chroot + "\r");
-      // we don't know what target the chroot has, so just try all three
-      Type("sudo starte17 -n " + chroot + "\r");
-      Type("sudo startkde -n " + chroot + "\r");
-      Type("sudo startxfce4 -n " + chroot + "\r");
-    };
-    toolbar.appendChild(button);
-  }
-}
 
 Crosh.prototype.onBeforeUnload_ = function(e) {
-  var msg = 'Closing this tab will exit crosh.';
+  // Note: This message doesn't seem to be shown by browsers.
+  const msg = `Closing this tab will exit crosh.`;
   e.returnValue = msg;
   return msg;
 };
+
 
 /**
  * Used by {@code this.sendString_} to determine if a string should be UTF-8
@@ -295,8 +237,8 @@ Crosh.prototype.exit = function(code) {
     return;
   }
 
-  this.io.println('crosh exited with code: ' + code);
-  this.io.println('(R)e-execute, (C)hoose another connection, or E(x)it?');
+  this.io.println(nassh.msg('COMMAND_COMPLETE', [this.commandName, code]));
+  this.io.println(nassh.msg('RECONNECT_MESSAGE'));
   this.io.onVTKeystroke = (string) => {
     var ch = string.toLowerCase();
     if (ch == 'r' || ch == ' ' || ch == '\x0d' /* enter */ ||
@@ -306,7 +248,7 @@ Crosh.prototype.exit = function(code) {
     }
 
     if (ch == 'c') {
-      document.location = '/html/nassh.html';
+      document.location = '/html/crosh.html';
       return;
     }
 

@@ -1,516 +1,842 @@
 {
-   "ALREADY_MOUNTED_MESSAGE": {
-      "description": "Message displayed after an existing file system tries to mount again",
-      "message": "File system is already mounted!"
-   },
-   "BACKUP_PREFS": {
-      "description": "Label for the link in the options page that lets the user save a backup copy of their preferences (e.g. colors, fonts, etc...).",
-      "message": "Save Backup"
-   },
-   "BAD_DESTINATION": {
-      "description": "Error displayed when we can't parse the destination for the ssh command.",
-      "message": "Unable to parse destination: $DEST$",
-      "placeholders": {
-         "dest": {
-            "content": "$1",
-            "example": "invalid.destination"
-         }
-      }
-   },
-   "BEFORE_UNLOAD": {
-      "description": "The message shown to a user when they try to close a tab with an open session.",
-      "message": "Closing this tab will disconnect this session."
-   },
-   "CANCEL_BUTTON_LABEL": {
-      "description": "The label for the Cancel button in dialogs.",
-      "message": "Cancel"
-   },
-   "CMD_SSH_FORGET_HOST_HELP": {
-      "description": "Long form help text for this command.",
-      "message": "This command displays a menu of known hosts and prompts for the host to forget."
-   },
-   "CMD_SSH_FORGET_HOST_TITLE": {
-      "description": "One-sentence description for this command.",
-      "message": "Forget a known ssh host."
-   },
-   "CMD_SSH_HELP": {
-      "description": "Long form help text for this command. Do not translate the parameter names in |pipes|.",
-      "message": "The |username| and |hostname| parameters are required, |port| is optional. If port is not specified it defaults to 22."
-   },
-   "CMD_SSH_TITLE": {
-      "description": "One-sentence description for this command.",
-      "message": "Opens a new SSH session."
-   },
-   "COMMAND_COMPLETE": {
-      "description": "Message displayed when the current command has completed and the program has exited (quit running).",
-      "message": "The command $NAME$ exited with status code $CODE$.",
-      "placeholders": {
-         "code": {
-            "content": "$2",
-            "example": "0"
-         },
-         "name": {
-            "content": "$1",
-            "example": "ssh"
-         }
-      }
-   },
-   "CONNECTING": {
-      "description": "Status message shown when connecting to a SSH server.",
-      "message": "Connecting to $DESTINATION$...",
-      "placeholders": {
-         "destination": {
-            "content": "$1",
-            "example": "username@example.com"
-         }
-      }
-   },
-   "CONNECT_BUTTON_LABEL": {
-      "description": "Label for the connect button.",
-      "message": "Connect"
-   },
-   "CONNECT_OR_EXIT_MESSAGE": {
-      "description": "Message displayed after a connection closes and the user cannot reconnect. Do not translate the (C) or (X) fields as they are keyboard shortcuts. Placing them after the word is OK like: Exit (X).",
-      "message": "(C)hoose another connection or E(x)it?"
-   },
-   "CONSOLE_CROSH_OPTIONS_NOTICE": {
-      "description": "Shown to users who open up the JavaScript developer console. Direct them to the options page instead.",
-      "message": "Did you know there is a dedicated options page?\nNo need to modify 'term_' directly anymore!\nPress $SHORTCUT$ to open it, or click:\n$URL$",
-      "placeholders": {
-         "shortcut": {
-            "content": "$1",
-            "example": "Ctrl-Shift-P"
-         },
-         "url": {
-            "content": "$2",
-            "example": "chrome-extension://okddffdblfhhnmhodogpojmfkjmhinfp/html/nassh_preferences_editor.html"
-         }
-      }
-   },
-   "CONSOLE_NASSH_OPTIONS_NOTICE": {
-      "description": "Shown to users who open up the JavaScript developer console. Direct them to the options page instead.",
-      "message": "Did you know there is a dedicated options page?\nNo need to mess with 'term_' directly anymore!\n$URL$",
-      "placeholders": {
-         "url": {
-            "content": "$1",
-            "example": "chrome-extension://okddffdblfhhnmhodogpojmfkjmhinfp/html/nassh_preferences_editor.html"
-         }
-      }
-   },
-   "DELETE_BUTTON_LABEL": {
-      "description": "The label for the delete button. Used to delete a specific SSH connection profile. It should be translated as a general term and not as a keyboard key reference.",
-      "message": "Delete"
-   },
-   "DEL_KEYCAP": {
-      "description": "The keycap for the delete key, displayed on the delete button. It should be localized, but focus on the intent of it being a reference to the keyboard button.",
-      "message": "[DEL]"
-   },
-   "DISCONNECT_MESSAGE": {
-      "description": "Message displayed after the plugin exits, but before the reconnect message.",
-      "message": "NaCl plugin exited with status code $CODE$.",
-      "placeholders": {
-         "code": {
-            "content": "$1",
-            "example": "0"
-         }
-      }
-   },
-   "ENTER_KEYCAP": {
-      "description": "The keycap for the enter key, displayed on the connect button. It should be localized, but focus on the intent of it being a reference to the keyboard button.",
-      "message": "[ENTER]"
-   },
-   "FIELD_ARGSTR_PLACEHOLDER": {
-      "description": "Placeholder text for the optional ssh arguments field. These are command line flags to the ssh program itself. Translators: the text does not need to be kept lowercase.",
-      "message": "extra command line arguments"
-   },
-   "FIELD_DESCRIPTION_ARIA_LABEL": {
-      "description": "Text use as the aria-label for the 'description' field.",
-      "message": "description"
-   },
-   "FIELD_DESCRIPTION_PLACEHOLDER": {
-      "description": "Placeholder text for the custom connection name. This string can be fully translated, but it should keep the 'username' and 'hostname' together with an @ sign.",
-      "message": "username@hostname or free form text"
-   },
-   "FIELD_HOSTNAME_ARIA_LABEL": {
-      "description": "Label for the SSH server hostname.",
-      "message": "hostname"
-   },
-   "FIELD_HOSTNAME_PLACEHOLDER": {
-      "description": "Placeholder for the SSH server hostname.",
-      "message": "hostname"
-   },
-   "FIELD_MOUNT_PATH_PLACEHOLDER": {
-      "description": "Placeholder text for the mount path field. This is the remote directory used for SFTP mounts.",
-      "message": "the default path is the user's home directory"
-   },
-   "FIELD_PORT_ARIA_LABEL": {
-      "description": "Label for the network port.",
-      "message": "port"
-   },
-   "FIELD_PORT_PLACEHOLDER": {
-      "description": "Placeholder for the network port.",
-      "message": "port"
-   },
-   "FIELD_RELAY_OPTIONS_ARIA_LABEL": {
-      "description": "Label for command line options to the SSH relay server. The relay server is like a web proxy for connections. 'SSH' refers to the protocol and probably should not be translated if the language does not have a common replacement.",
-      "message": "SSH relay server options"
-   },
-   "FIELD_RELAY_OPTIONS_PLACEHOLDER": {
-      "description": "Placeholder for command line options to the SSH relay server. The relay server is like a web proxy for connections. 'SSH' refers to the protocol and probably should not be translated if the language does not have a common replacement.",
-      "message": "SSH relay server options"
-   },
-   "FIELD_TERMINAL_PROFILE_PLACEHOLDER": {
-      "description": "Placeholder text for the default terminal emulator profile name.",
-      "message": "default"
-   },
-   "FIELD_USERNAME_ARIA_LABEL": {
-      "description": "Label for the remote username for accessing the SSH server.",
-      "message": "username"
-   },
-   "FIELD_USERNAME_PLACEHOLDER": {
-      "description": "Placeholder for the remote username for accessing the SSH server.",
-      "message": "username"
-   },
-   "FOUND_RELAY": {
-      "description": "Text displayed in the terminal when the user is connecting through a relay server (which is like a web proxy for connections).",
-      "message": "Found relay server: $URL$",
-      "placeholders": {
-         "url": {
-            "content": "$1",
-            "example": "http://proxy.example.com:8023/"
-         }
-      }
-   },
-   "GET_PROFILE_ERROR": {
-      "description": "Error message shown when trying to load an unknown/invalid connection profile.",
-      "message": "ERROR: Could not load profile $ID$:\n$MSG$",
-      "placeholders": {
-         "id": {
-            "content": "$1",
-            "example": "3dc8"
-         },
-         "msg": {
-            "content": "$2",
-            "example": "Unknown profile-ids: 3dc8"
-         }
-      }
-   },
-   "IDENTITY_LABEL": {
-      "description": "Label for the identity field. The identity is a SSH private key filename used to authenticate with servers.",
-      "message": "Identity"
-   },
-   "IMPORT_LINK_ARIA_LABEL": {
-      "description": "The aria-label for the Import link.",
-      "message": "file import"
-   },
-   "IMPORT_LINK_LABEL": {
-      "description": "Label for the identity import button. It will trigger an 'open file' dialog so users can select a file to import. The identity is a SSH private key file used to authenticate with servers.",
-      "message": "Import..."
-   },
-   "INITIALIZING_RELAY": {
-      "description": "Text displayed in the terminal when the user is connecting through a relay server (which is like a web proxy for connections). This shows the host used to look up the relay server system.",
-      "message": "Looking up relay server using: $HOST$",
-      "placeholders": {
-         "host": {
-            "content": "$1",
-            "example": "proxy.example.com"
-         }
-      }
-   },
-   "JSON_PARSE_ERROR": {
-      "description": "Error message shown when parsing JSON data failed. The $KEY$ is a preference name, and the quote style may be changed as needed. $ERROR$ is the failure message. Neither are translated currently.",
-      "message": "Could not parse JSON in '$KEY$': $ERROR$",
-      "placeholders": {
-         "error": {
-            "content": "$2",
-            "example": "SyntaxError: Unexpected end of JSON input"
-         },
-         "key": {
-            "content": "$1",
-            "example": "cursor-blink"
-         }
-      }
-   },
-   "KNOWN_HOSTS_EMPTY": {
-      "description": "Message displayed when there are no hosts to delete.",
-      "message": "No known hosts, nothing to forget."
-   },
-   "KNOWN_HOSTS_PROMPT": {
-      "description": "Prompt displayed by the ssh-forget-host command",
-      "message": "Please select a host to forget [1-$COUNT$]: ",
-      "placeholders": {
-         "count": {
-            "content": "$1",
-            "example": "10"
-         }
-      }
-   },
-   "KNOWN_HOSTS_TITLE": {
-      "description": "Header text displayed before the list of known hosts.",
-      "message": "Known hosts:"
-   },
-   "LOADING_LABEL": {
-      "description": "The text displayed in the identity dropdown list while we load identities (which are SSH private key filenames used to authenticate with servers).",
-      "message": "Loading..."
-   },
-   "MISSING_PARAM": {
-      "description": "Error message displayed when a command is missing a parameter.",
-      "message": "Missing parameter: $NAME$",
-      "placeholders": {
-         "name": {
-            "content": "$1",
-            "example": "username"
-         }
-      }
-   },
-   "MOUNTED_MESSAGE": {
-      "description": "Message displayed after a file system is mounted",
-      "message": "Mounted!"
-   },
-   "MOUNT_BUTTON_LABEL": {
-      "description": "The label for the mount button. Used to access (mount) remote directories over SSH.",
-      "message": "SFTP Mount"
-   },
-   "MOUNT_PATH_LABEL": {
-      "description": "Label for the mount path field. This is the remote directory used for SFTP mounts.",
-      "message": "Mount Path"
-   },
-   "NOTIFY_COPY": {
-      "description": "Short status message displayed in a terminal overlay when text is automatically copied to the clipboard.",
-      "message": "Selection Copied"
-   },
-   "OK_BUTTON_LABEL": {
-      "description": "The label for the OK button in dialogs.",
-      "message": "OK"
-   },
-   "OMNIBOX_DEFAULT": {
-      "description": "Default help text as a tip in the omnibox. Do not translate the \u003Curl> and \u003Cmatch> tags. The 'user@hostname[:port]' may be translated, but it should keep the 'username' and 'hostname' together with an @ sign, and the : before the 'port'.",
-      "message": "\u003Curl>\u003Cmatch>user@hostname[:port]\u003C/match>\u003C/url> Connect to a saved profile or a new ssh system"
-   },
-   "OPEN_AS_WINDOW_TIP": {
-      "description": "Message displayed to users who are running Secure Shell in a tab. The [Pro Tip] should be localized (it is slang in the computing world), but can be localized as just 'tip' if easier.",
-      "message": "[Pro Tip] Use 'Open as Window' to prevent Control-W from closing your terminal!\n[Pro Tip] See $URL$ for more information.",
-      "placeholders": {
-         "url": {
-            "content": "$1",
-            "example": "https://goo.gl/mHrbej"
-         }
-      }
-   },
-   "OPTIONS_BUTTON_LABEL": {
-      "description": "The label for the options button.",
-      "message": "Options"
-   },
-   "PLUGIN_LOADING": {
-      "description": "Status message displayed while loading the plugin.",
-      "message": "Loading NaCl plugin..."
-   },
-   "PLUGIN_LOADING_COMPLETE": {
-      "description": "Appended to PLUGIN_LOADING message when loading is complete.",
-      "message": " done."
-   },
-   "PLUGIN_LOADING_FAILED": {
-      "description": "Appended to PLUGIN_LOADING message when loading has failed.",
-      "message": " failed! :("
-   },
-   "PREFERENCES_HEADER": {
-      "description": "Friendly message shown on the preferences (e.g. colors, fonts, etc...) editing page.",
-      "message": "Profile Settings"
-   },
-   "PREFERENCES_RESET": {
-      "description": "Message displayed after all preferences (e.g. colors, fonts, etc...) are reset.",
-      "message": "All preferences reset!"
-   },
-   "PREF_BACKUP_FILENAME": {
-      "description": "Default filename for the preferences backup file. The filename should be translated, but the '.json' suffix should be retained.",
-      "message": "Secure Shell Preferences Backup.json"
-   },
-   "RECONNECT_MESSAGE": {
-      "description": "Message displayed after a connection closes. Do not translate the (R), (C), or (X) fields as they are keyboard shortcuts. Placing them after the word is OK like: Exit (X).",
-      "message": "(R)econnect, (C)hoose another connection, or E(x)it?"
-   },
-   "RELAY_OPTIONS_ERROR": {
-      "description": "Error message shown when a user specified option is invalid.",
-      "message": "Unknown relay option: $OPTION$",
-      "placeholders": {
-         "option": {
-            "content": "$1",
-            "example": "--foobar"
-         }
-      }
-   },
-   "RELAY_RETRY": {
-      "description": "Displayed in a text overlay when we experience an error talking to the relay server (which is like a web proxy for connections).",
-      "message": "Retrying..."
-   },
-   "REQUEST_PIN_PROMPT": {
-      "description": "Prompt shown when the user is requested to enter a smart card's PIN.",
-      "message": "Enter PIN to unlock key $FINGERPRINT$ on '$READER$' ($NUM_TRIES$ tries remaining): ",
-      "placeholders": {
-         "fingerprint": {
-            "content": "$1",
-            "example": "1234ABCD"
-         },
-         "num_tries": {
-            "content": "$3",
-            "example": "3"
-         },
-         "reader": {
-            "content": "$2",
-            "example": "OpenPGP card reader"
-         }
-      }
-   },
-   "RESTORE_PREFS": {
-      "description": "Label for the link in the options page that lets the user restore their preferences (e.g. colors, font, etc...).",
-      "message": "Restore Backup"
-   },
-   "SHORTCUT_LIST_ARIA_LABEL": {
-      "description": "Text use as the aria-label for the 'shortcut-list'.",
-      "message": "saved connections"
-   },
-   "SMART_CARD_CONNECTOR_NOT_INSTALLED": {
-      "description": "Error message shown when 'gsc' SSH agent backend is used but the Smart Card Connector app is not installed.",
-      "message": "Please install the Smart Card Connector app: $URL$",
-      "placeholders": {
-         "url": {
-            "content": "$1",
-            "example": "https://chrome.google.com/webstore/detail/khpfeaanjngmcnplbdlpegiifgpfgdco"
-         }
-      }
-   },
-   "SSH_ARGSTR_LABEL": {
-      "description": "Label for the optional ssh arguments field. These are command line flags to the ssh program itself.",
-      "message": "SSH Arguments"
-   },
-   "TERMINAL_PREVIEW_LABEL": {
-      "description": "Label for the preview window that allows users to preview their preferences (like color and font choices).",
-      "message": "Preview"
-   },
-   "TERMINAL_PROFILE_LABEL": {
-      "description": "Label for the current terminal emulator profile name. Profiles are used to customize things like color and fonts.",
-      "message": "Current profile"
-   },
-   "TIP_1": {
-      "description": "Helpful tip shown to user advertising features",
-      "message": "You can hold Ctrl (Cmd on macOS) while clicking on links to open them!"
-   },
-   "TIP_10": {
-      "description": "Helpful tip shown to user advertising features",
-      "message": "When running in a window, Ctrl-Shift-N can open another session."
-   },
-   "TIP_11": {
-      "description": "Helpful tip shown to user advertising features. 'rebind' means changing the behavior of a specific shortcut.",
-      "message": "You can rebind keys/shortcuts: https://goo.gl/LWRndr"
-   },
-   "TIP_12": {
-      "description": "Helpful tip shown to user advertising features. Do not translate 'Yubikeys' as it's a product name.",
-      "message": "Use Yubikeys and other smart cards for ssh auth: https://goo.gl/3ZEU1w"
-   },
-   "TIP_2": {
-      "description": "Helpful tip shown to user advertising features. Do not translate 'hterm-notify' as it's the name of a program.",
-      "message": "Display notifications in the browser using hterm-notify: https://goo.gl/ZNxGdF"
-   },
-   "TIP_3": {
-      "description": "Helpful tip shown to user advertising features. Do not translate the 'ssh' string, but '\u003Cprofile name>' can be. It is a user-defined description for their saved connections.",
-      "message": "Connect from the omnibox by typing 'ssh \u003Cprofile name>': https://goo.gl/V7o8ki"
-   },
-   "TIP_4": {
-      "description": "Helpful tip shown to user advertising features. 'SFTP Mount' and 'Connect' refer to button labels and should be translated using the same text as the MOUNT_BUTTON_LABEL and CONNECT_BUTTON_LABEL messages.",
-      "message": "Chrome OS can mount file systems via SFTP and browse via the Files app. Use 'SFTP Mount' instead of 'Connect'."
-   },
-   "TIP_5": {
-      "description": "Helpful tip shown to user advertising features. Do not translate the 'ssh://' part as it refers to a web link.",
-      "message": "Connect using ssh:// links in web pages, or save a bookmark: https://goo.gl/zS8EZD"
-   },
-   "TIP_6": {
-      "description": "Helpful tip shown to user advertising features",
-      "message": "Color your output/prompt using basic 16 colors & 256 colors & full 24-bit colors: http://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html"
-   },
-   "TIP_7": {
-      "description": "Helpful tip shown to user advertising features. Do not translate 'emacs' or 'vim' (they are the names of text editors), and do not translate 'OSC-52' (it refers to a terminal specification).",
-      "message": "Copy to your clipboard from emacs/vim/etc... using OSC-52: https://goo.gl/XSnyLo"
-   },
-   "TIP_8": {
-      "description": "Helpful tip shown to user advertising features",
-      "message": "Chat with fellow hterm/Secure Shell users via chromium-hterm@chromium.org: https://goo.gl/RYHiK"
-   },
-   "TIP_9": {
-      "description": "Helpful tip shown to user advertising features",
-      "message": "Found a bug?  Request a new feature?  Let us know: https://goo.gl/vb94JY"
-   },
-   "UNEXPECTED_ERROR": {
-      "description": "Generic message displayed when we encounter an unexpected error.",
-      "message": "An unexpected error occurred, please check the JavaScript console for more details."
-   },
-   "UNMOUNT_BUTTON_LABEL": {
-      "description": "The label for the unmount button. Used to access (mount) remote directories over SSH.",
-      "message": "Unmount SFTP"
-   },
-   "UPDATE_AVAILABLE_TOOLTIP": {
-      "description": "A tooltip shown for the chip that indicates an update is available",
-      "message": "An update is available. Please close all windows."
-   },
-   "WELCOME_CHANGELOG": {
-      "description": "A link to the ChangeLog file, displayed at startup. All the text here may be localized as makes sense.",
-      "message": "ChangeLog/release notes: $URL$",
-      "placeholders": {
-         "url": {
-            "content": "$1",
-            "example": "https://goo.gl/YnmXOs"
-         }
-      }
-   },
-   "WELCOME_FAQ": {
-      "description": "A link to the frequently asked questions, displayed at startup",
-      "message": "Answers to Frequently Asked Questions: $URL$ (ctrl+click on links to open)",
-      "placeholders": {
-         "url": {
-            "content": "$1",
-            "example": "https://goo.gl/muppJj"
-         }
-      }
-   },
-   "WELCOME_RELEASE_HIGHLIGHTS": {
-      "description": "A header for a list of important changes, displayed at startup",
-      "message": "Major changes since $VER$:",
-      "placeholders": {
-         "ver": {
-            "content": "$1",
-            "example": "0.8.35.6"
-         }
-      }
-   },
-   "WELCOME_TIP_OF_DAY": {
-      "description": "Random useful tip displayed to the user at startup",
-      "message": "Random Pro Tip #$NUM$: $TIP$",
-      "placeholders": {
-         "num": {
-            "content": "$1",
-            "example": "22"
-         },
-         "tip": {
-            "content": "$2",
-            "example": "Did you know you can resize the window?"
-         }
-      }
-   },
-   "WELCOME_VERSION": {
-      "description": "Message displayed to the user when the application is first launched",
-      "message": "Welcome to $NAME$ version $VERSION$.",
-      "placeholders": {
-         "name": {
-            "content": "$1",
-            "example": "Secure Shell"
-         },
-         "version": {
-            "content": "$2",
-            "example": "1.0"
-         }
-      }
-   },
-   "ZOOM_WARNING": {
-      "description": "Shown in the top/right corner if the web browser zoom setting is not set to 100%. It's a tip to navigate the Chrome browser's menu.",
-      "message": "Please set Chrome Menu->Zoom to 100%"
-   }
+	"ALREADY_MOUNTED_MESSAGE": {
+		"description": "Message displayed after an existing file system tries to mount again",
+		"message": "File system is already mounted!"
+	},
+	"BACKUP_PREFS": {
+		"description": "Label for the link in the options page that lets the user save a backup copy of their preferences (e.g. colors, fonts, etc...).",
+		"message": "Save Backup"
+	},
+	"BAD_DESTINATION": {
+		"description": "Error displayed when we can't parse the destination for the ssh command.",
+		"message": "Unable to parse destination: $DEST$",
+		"placeholders": {
+			"dest": {
+				"content": "$1",
+				"example": "invalid.destination"
+			}
+		}
+	},
+	"BEFORE_UNLOAD": {
+		"description": "The message shown to a user when they try to close a tab with an open session.",
+		"message": "Closing this tab will disconnect this session."
+	},
+	"CANCEL_BUTTON_LABEL": {
+		"description": "The label for the Cancel button in dialogs.",
+		"message": "Cancel"
+	},
+	"CMD_SSH_FORGET_HOST_HELP": {
+		"description": "Long form help text for this command.",
+		"message": "This command displays a menu of known hosts and prompts for the host to forget."
+	},
+	"CMD_SSH_FORGET_HOST_TITLE": {
+		"description": "One-sentence description for this command.",
+		"message": "Forget a known ssh host."
+	},
+	"CMD_SSH_HELP": {
+		"description": "Long form help text for this command. Do not translate the parameter names in |pipes|.",
+		"message": "The |username| and |hostname| parameters are required, |port| is optional. If port is not specified it defaults to 22."
+	},
+	"CMD_SSH_TITLE": {
+		"description": "One-sentence description for this command.",
+		"message": "Opens a new SSH session."
+	},
+	"COMMAND_COMPLETE": {
+		"description": "Message displayed when the current command has completed and the program has exited (quit running).",
+		"message": "The command $NAME$ exited with status code $CODE$.",
+		"placeholders": {
+			"code": {
+				"content": "$2",
+				"example": "0"
+			},
+			"name": {
+				"content": "$1",
+				"example": "ssh"
+			}
+		}
+	},
+	"COMMAND_NOT_SUPPORTED": {
+		"description": "When a command is not supported on the current operating system.",
+		"message": "$COMMAND$ is not supported on this version of Chrome",
+		"placeholders": {
+			"command": {
+				"content": "$1",
+				"example": "crosh"
+			}
+		}
+	},
+	"COMMAND_STARTUP_FAILED": {
+		"description": "When running a command (e.g. ssh or crosh) failed to start.",
+		"message": "Launching $COMMAND$ failed.",
+		"placeholders": {
+			"command": {
+				"content": "$1",
+				"example": "crosh"
+			}
+		}
+	},
+	"CONNECTING": {
+		"description": "Status message shown when connecting to a SSH server.",
+		"message": "Connecting to $DESTINATION$...",
+		"placeholders": {
+			"destination": {
+				"content": "$1",
+				"example": "username@example.com"
+			}
+		}
+	},
+	"CONNECTION_DIALOG_NAME": {
+		"description": "Name for the main connection dialog when shown in lists.",
+		"message": "Connection Dialog"
+	},
+	"CONNECT_BUTTON_LABEL": {
+		"description": "Label for the connect button.",
+		"message": "Connect"
+	},
+	"CONNECT_OR_EXIT_MESSAGE": {
+		"description": "Message displayed after a connection closes and the user cannot reconnect. Do not translate the (C) or (X) fields as they are keyboard shortcuts. Placing them after the word is OK like: Exit (X).",
+		"message": "(C)hoose another connection or E(x)it?"
+	},
+	"CONSOLE_CROSH_OPTIONS_NOTICE": {
+		"description": "Shown to users who open up the JavaScript developer console. Direct them to the options page instead.",
+		"message": "Did you know there is a dedicated options page?\nNo need to modify 'term_' directly anymore!\nPress $SHORTCUT$ to open it, or click:\n$URL$",
+		"placeholders": {
+			"shortcut": {
+				"content": "$1",
+				"example": "Ctrl-Shift-P"
+			},
+			"url": {
+				"content": "$2",
+				"example": "chrome-extension://okddffdblfhhnmhodogpojmfkjmhinfp/html/nassh_preferences_editor.html"
+			}
+		}
+	},
+	"CONSOLE_NASSH_OPTIONS_NOTICE": {
+		"description": "Shown to users who open up the JavaScript developer console. Direct them to the options page instead.",
+		"message": "Did you know there is a dedicated options page?\nNo need to mess with 'term_' directly anymore!\n$URL$",
+		"placeholders": {
+			"url": {
+				"content": "$1",
+				"example": "chrome-extension://okddffdblfhhnmhodogpojmfkjmhinfp/html/nassh_preferences_editor.html"
+			}
+		}
+	},
+	"DELETE_BUTTON_LABEL": {
+		"description": "The label for the delete button. Used to delete a specific SSH connection profile. It should be translated as a general term and not as a keyboard key reference.",
+		"message": "Delete"
+	},
+	"DEL_KEYCAP": {
+		"description": "The keycap for the delete key, displayed on the delete button. It should be localized, but focus on the intent of it being a reference to the keyboard button.",
+		"message": "[DEL]"
+	},
+	"DISCONNECT_MESSAGE": {
+		"description": "Message displayed after the plugin exits, but before the reconnect message.",
+		"message": "NaCl plugin exited with status code $CODE$.",
+		"placeholders": {
+			"code": {
+				"content": "$1",
+				"example": "0"
+			}
+		}
+	},
+	"ENTER_KEYCAP": {
+		"description": "The keycap for the enter key, displayed on the connect button. It should be localized, but focus on the intent of it being a reference to the keyboard button.",
+		"message": "[ENTER]"
+	},
+	"FIELD_ARGSTR_PLACEHOLDER": {
+		"description": "Placeholder text for the optional ssh arguments field. These are command line flags to the ssh program itself. Translators: the text does not need to be kept lowercase.",
+		"message": "extra command line arguments"
+	},
+	"FIELD_DESCRIPTION_ARIA_LABEL": {
+		"description": "Text use as the aria-label for the 'description' field.",
+		"message": "description"
+	},
+	"FIELD_DESCRIPTION_PLACEHOLDER": {
+		"description": "Placeholder text for the custom connection name. This string can be fully translated, but it should keep the 'username' and 'hostname' together with an @ sign.",
+		"message": "username@hostname or free form text"
+	},
+	"FIELD_HOSTNAME_ARIA_LABEL": {
+		"description": "Label for the SSH server hostname.",
+		"message": "hostname"
+	},
+	"FIELD_HOSTNAME_PLACEHOLDER": {
+		"description": "Placeholder for the SSH server hostname.",
+		"message": "hostname"
+	},
+	"FIELD_MOUNT_PATH_PLACEHOLDER": {
+		"description": "Placeholder text for the mount path field. This is the remote directory used for SFTP mounts.",
+		"message": "the default path is the user's home directory"
+	},
+	"FIELD_PORT_ARIA_LABEL": {
+		"description": "Label for the network port.",
+		"message": "port"
+	},
+	"FIELD_PORT_PLACEHOLDER": {
+		"description": "Placeholder for the network port.",
+		"message": "port"
+	},
+	"FIELD_RELAY_OPTIONS_ARIA_LABEL": {
+		"description": "Label for command line options to the SSH relay server. The relay server is like a web proxy for connections. 'SSH' refers to the protocol and probably should not be translated if the language does not have a common replacement.",
+		"message": "SSH relay server options"
+	},
+	"FIELD_RELAY_OPTIONS_PLACEHOLDER": {
+		"description": "Placeholder for command line options to the SSH relay server. The relay server is like a web proxy for connections. 'SSH' refers to the protocol and probably should not be translated if the language does not have a common replacement.",
+		"message": "SSH relay server options"
+	},
+	"FIELD_TERMINAL_PROFILE_PLACEHOLDER": {
+		"description": "Placeholder text for the default terminal emulator profile name.",
+		"message": "default"
+	},
+	"FIELD_USERNAME_ARIA_LABEL": {
+		"description": "Label for the remote username for accessing the SSH server.",
+		"message": "username"
+	},
+	"FIELD_USERNAME_PLACEHOLDER": {
+		"description": "Placeholder for the remote username for accessing the SSH server.",
+		"message": "username"
+	},
+	"FOUND_RELAY": {
+		"description": "Text displayed in the terminal when the user is connecting through a relay server (which is like a web proxy for connections).",
+		"message": "Found relay server: $URL$",
+		"placeholders": {
+			"url": {
+				"content": "$1",
+				"example": "http://proxy.example.com:8023/"
+			}
+		}
+	},
+	"GET_PROFILE_ERROR": {
+		"description": "Error message shown when trying to load an unknown/invalid connection profile.",
+		"message": "ERROR: Could not load profile $ID$:\n$MSG$",
+		"placeholders": {
+			"id": {
+				"content": "$1",
+				"example": "3dc8"
+			},
+			"msg": {
+				"content": "$2",
+				"example": "Unknown profile-ids: 3dc8"
+			}
+		}
+	},
+	"HTERM_BUTTON_ALLOW_ALWAYS": {
+		"description": "Button label for always allowing the requested feature.",
+		"message": "always allow"
+	},
+	"HTERM_BUTTON_ALLOW_SESSION": {
+		"description": "Button label for allowing the requested feature for this session only.",
+		"message": "allow this session"
+	},
+	"HTERM_BUTTON_BLOCK": {
+		"description": "Button label for blocking the requested feature.",
+		"message": "block"
+	},
+	"HTERM_LOADING_RESOURCE_FAILED": {
+		"description": "Message shown to the user when loading a resource (image, audio file, video, etc...) failed for any reason.",
+		"message": "Loading $RESOURCE$ failed ...",
+		"placeholders": {
+			"resource": {
+				"content": "$1",
+				"example": "some-image.gif"
+			}
+		}
+	},
+	"HTERM_LOADING_RESOURCE_START": {
+		"description": "Message shown to the user when loading a resource (image, audio file, video, etc...).",
+		"message": "Loading $RESOURCE$ ...",
+		"placeholders": {
+			"resource": {
+				"content": "$1",
+				"example": "some-image.gif"
+			}
+		}
+	},
+	"HTERM_POPUP_INLINE_IMAGE": {
+		"description": "Message shown when asking users how they want to display inline images.",
+		"message": "Inline Images"
+	},
+	"HTERM_POPUP_INLINE_IMAGE_DISABLED": {
+		"description": "Message shown to the user when trying to display an image but support is disabled.",
+		"message": "Inline Images Disabled"
+	},
+	"HTERM_PREF_ALLOW_IMAGES_INLINE": {
+		"description": "Help text shown for the hterm 'allow-images-inline' preference.",
+		"message": "Whether to allow the remote side to display images in the terminal.\n\nBy default, we prompt until a choice is made."
+	},
+	"HTERM_PREF_ALT_BACKSPACE_IS_META_BACKSPACE": {
+		"description": "Help text shown for the hterm 'alt-backspace-is-meta-backspace' preference.",
+		"message": "If set, undoes the Chrome OS Alt-Backspace->DEL remap, so that alt-backspace indeed is alt-backspace."
+	},
+	"HTERM_PREF_ALT_GR_MODE": {
+		"description": "Help text shown for the hterm 'alt-gr-mode' preference.",
+		"message": "Select an AltGr detection hack^Wheuristic.\n\n'null': Autodetect based on navigator.language:\n      'en-us' => 'none', else => 'right-alt'\n'none': Disable any AltGr related munging.\n'ctrl-alt': Assume Ctrl+Alt means AltGr.\n'left-alt': Assume left Alt means AltGr.\n'right-alt': Assume right Alt means AltGr."
+	},
+	"HTERM_PREF_ALT_IS_META": {
+		"description": "Help text shown for the hterm 'alt-is-meta' preference.",
+		"message": "Set whether the alt key acts as a meta key or as a distinct alt key."
+	},
+	"HTERM_PREF_ALT_SENDS_WHAT": {
+		"description": "Help text shown for the hterm 'alt-sends-what' preference.",
+		"message": "Controls how the alt key is handled.\n\n  escape....... Send an ESC prefix.\n  8-bit........ Add 128 to the unshifted character as in xterm.\n  browser-key.. Wait for the keypress event and see what the browser\n                says.  (This won't work well on platforms where the\n                browser performs a default action for some alt sequences.)"
+	},
+	"HTERM_PREF_AUDIBLE_BELL_SOUND": {
+		"description": "Help text shown for the hterm 'audible-bell-sound' preference.",
+		"message": "URL of the terminal bell sound.  Empty string for no audible bell."
+	},
+	"HTERM_PREF_BACKGROUND_COLOR": {
+		"description": "Help text shown for the hterm 'background-color' preference.",
+		"message": "The background color for text with no other color attributes."
+	},
+	"HTERM_PREF_BACKGROUND_IMAGE": {
+		"description": "Help text shown for the hterm 'background-image' preference.",
+		"message": "CSS value of the background image.  Empty string for no image.\n\nFor example:\n  url(https://goo.gl/anedTK)\n  linear-gradient(top bottom, blue, red)"
+	},
+	"HTERM_PREF_BACKGROUND_POSITION": {
+		"description": "Help text shown for the hterm 'background-position' preference.",
+		"message": "CSS value of the background image position.\n\nFor example:\n  10% 10%\n  center"
+	},
+	"HTERM_PREF_BACKGROUND_SIZE": {
+		"description": "Help text shown for the hterm 'background-size' preference.",
+		"message": "CSS value of the background image size.  Defaults to none."
+	},
+	"HTERM_PREF_BACKSPACE_SENDS_BACKSPACE": {
+		"description": "Help text shown for the hterm 'backspace-sends-backspace' preference.",
+		"message": "If true, the backspace should send BS ('\\x08', aka ^H).  Otherwise the backspace key should send '\\x7f'."
+	},
+	"HTERM_PREF_CHARACTER_MAP_OVERRIDES": {
+		"description": "Help text shown for the hterm 'character-map-overrides' preference.",
+		"message": "This is specified as an object. It is a sparse array, where each property is the character set code and the value is an object that is a sparse array itself. In that sparse array, each property is the received character and the value is the displayed character.\n\nFor example:\n  {\"0\":{\"+\":\"\\u2192\",\",\":\"\\u2190\",\"-\":\"\\u2191\",\".\":\"\\u2193\", \"0\":\"\\u2588\"}}"
+	},
+	"HTERM_PREF_CLEAR_SELECTION_AFTER_COPY": {
+		"description": "Help text shown for the hterm 'clear-selection-after-copy' preference.",
+		"message": "Whether to clear the selection after copying."
+	},
+	"HTERM_PREF_CLOSE_ON_EXIT": {
+		"description": "Help text shown for the hterm 'close-on-exit' preference.",
+		"message": "Whether or not to close the window when the command exits."
+	},
+	"HTERM_PREF_COLOR_PALETTE_OVERRIDES": {
+		"description": "Help text shown for the hterm 'color-palette-overrides' preference.",
+		"message": "Override colors in the default palette.\n\nThis can be specified as an array or an object.  If specified as an object it is assumed to be a sparse array, where each property is a numeric index into the color palette.\n\nValues can be specified as almost any css color value.  This includes #RGB, #RRGGBB, rgb(...), rgba(...), and any color names that are also part of the stock X11 rgb.txt file.\n\nYou can use 'null' to specify that the default value should be not be changed.  This is useful for skipping a small number of indices when the value is specified as an array."
+	},
+	"HTERM_PREF_COPY_ON_SELECT": {
+		"description": "Help text shown for the hterm 'copy-on-select' preference.",
+		"message": "Automatically copy mouse selection to the clipboard."
+	},
+	"HTERM_PREF_CTRL_C_COPY": {
+		"description": "Help text shown for the hterm 'ctrl-c-copy' preference.",
+		"message": "Ctrl+C copies if true, send ^C to host if false.\nCtrl+Shift+C sends ^C to host if true, copies if false."
+	},
+	"HTERM_PREF_CTRL_PLUS_MINUS_ZERO_ZOOM": {
+		"description": "Help text shown for the hterm 'ctrl-plus-minus-zero-zoom' preference.",
+		"message": "If true, Ctrl-Plus/Minus/Zero controls zoom.\nIf false, Ctrl-Shift-Plus/Minus/Zero controls zoom, Ctrl-Minus sends ^_, Ctrl-Plus/Zero do nothing."
+	},
+	"HTERM_PREF_CTRL_V_PASTE": {
+		"description": "Help text shown for the hterm 'ctrl-v-paste' preference.",
+		"message": "Ctrl+V pastes if true, send ^V to host if false.\nCtrl+Shift+V sends ^V to host if true, pastes if false."
+	},
+	"HTERM_PREF_CURSOR_BLINK": {
+		"description": "Help text shown for the hterm 'cursor-blink' preference.",
+		"message": "Whether or not to blink the cursor by default."
+	},
+	"HTERM_PREF_CURSOR_BLINK_CYCLE": {
+		"description": "Help text shown for the hterm 'cursor-blink-cycle' preference.",
+		"message": "The cursor blink rate in milliseconds.\n\nA two element array, the first of which is how long the cursor should be on, second is how long it should be off."
+	},
+	"HTERM_PREF_CURSOR_COLOR": {
+		"description": "Help text shown for the hterm 'cursor-color' preference.",
+		"message": "The color of the visible cursor."
+	},
+	"HTERM_PREF_DESKTOP_NOTIFICATION_BELL": {
+		"description": "Help text shown for the hterm 'desktop-notification-bell' preference.",
+		"message": "If true, terminal bells in the background will create a Web Notification. https://www.w3.org/TR/notifications/\n\nDisplaying notifications requires permission from the user. When this option is set to true, hterm will attempt to ask the user for permission if necessary. Note browsers may not show this permission request if it did not originate from a user action.\n\nChrome extensions with the \"notifications\" permission have permission to display notifications."
+	},
+	"HTERM_PREF_EAST_ASIAN_AMBIGUOUS_AS_TWO_COLUMN": {
+		"description": "Help text shown for the hterm 'east-asian-ambiguous-as-two-column' preference.",
+		"message": "Set whether East Asian Ambiguous characters have two column width."
+	},
+	"HTERM_PREF_ENABLE_8_BIT_CONTROL": {
+		"description": "Help text shown for the hterm 'enable-8-bit-control' preference.",
+		"message": "True to enable 8-bit control characters, false to ignore them.\n\nWe'll respect the two-byte versions of these control characters regardless of this setting."
+	},
+	"HTERM_PREF_ENABLE_BLINK": {
+		"description": "Help text shown for the hterm 'enable-blink' preference.",
+		"message": "True if we should respect the blink attribute.  False to ignore it.  "
+	},
+	"HTERM_PREF_ENABLE_BOLD": {
+		"description": "Help text shown for the hterm 'enable-bold' preference.",
+		"message": "True if we should use bold weight font for text with the bold/bright attribute.  False to use the normal weight font.  Null to autodetect."
+	},
+	"HTERM_PREF_ENABLE_BOLD_AS_BRIGHT": {
+		"description": "Help text shown for the hterm 'enable-bold-as-bright' preference.",
+		"message": "True if we should use bright colors (8-15 on a 16 color palette) for any text with the bold attribute.  False otherwise."
+	},
+	"HTERM_PREF_ENABLE_CLIPBOARD_NOTICE": {
+		"description": "Help text shown for the hterm 'enable-clipboard-notice' preference.",
+		"message": "Show a message in the terminal when the host writes to the clipboard."
+	},
+	"HTERM_PREF_ENABLE_CLIPBOARD_WRITE": {
+		"description": "Help text shown for the hterm 'enable-clipboard-write' preference.",
+		"message": "Allow the remote host to write directly to the local system clipboard.\nRead access is never granted regardless of this setting.\n\nThis is used to control access to features like OSC-52."
+	},
+	"HTERM_PREF_ENABLE_DEC12": {
+		"description": "Help text shown for the hterm 'enable-dec12' preference.",
+		"message": "Respect the host's attempt to change the cursor blink status using DEC Private Mode 12."
+	},
+	"HTERM_PREF_ENVIRONMENT": {
+		"description": "Help text shown for the hterm 'environment' preference.",
+		"message": "The default environment variables, as an object."
+	},
+	"HTERM_PREF_FONT_FAMILY": {
+		"description": "Help text shown for the hterm 'font-family' preference.",
+		"message": "Default font family for the terminal text."
+	},
+	"HTERM_PREF_FONT_SIZE": {
+		"description": "Help text shown for the hterm 'font-size' preference.",
+		"message": "The default font size in pixels."
+	},
+	"HTERM_PREF_FONT_SMOOTHING": {
+		"description": "Help text shown for the hterm 'font-smoothing' preference.",
+		"message": "CSS font-smoothing property."
+	},
+	"HTERM_PREF_FOREGROUND_COLOR": {
+		"description": "Help text shown for the hterm 'foreground-color' preference.",
+		"message": "The foreground color for text with no other color attributes."
+	},
+	"HTERM_PREF_HOME_KEYS_SCROLL": {
+		"description": "Help text shown for the hterm 'home-keys-scroll' preference.",
+		"message": "If true, home/end will control the terminal scrollbar and shift home/end will send the VT keycodes.  If false then home/end sends VT codes and shift home/end scrolls."
+	},
+	"HTERM_PREF_KEYBINDINGS": {
+		"description": "Help text shown for the hterm 'keybindings' preference.",
+		"message": "A map of key sequence to key actions.  Key sequences include zero or more modifier keys followed by a key code.  Key codes can be decimal or hexadecimal numbers, or a key identifier.  Key actions can be specified a string to send to the host, or an action identifier.  For a full explanation of the format, see https://goo.gl/LWRndr.\n\nSample keybindings:\n{\n  \"Ctrl-Alt-K\": \"clearScrollback\",\n  \"Ctrl-Shift-L\": \"PASS\",\n  \"Ctrl-H\": \"'HELLO\\n'\"\n}"
+	},
+	"HTERM_PREF_MEDIA_KEYS_ARE_FKEYS": {
+		"description": "Help text shown for the hterm 'media-keys-are-fkeys' preference.",
+		"message": "If true, convert media keys to their Fkey equivalent. If false, let the browser handle the keys."
+	},
+	"HTERM_PREF_META_SENDS_ESCAPE": {
+		"description": "Help text shown for the hterm 'meta-sends-escape' preference.",
+		"message": "Set whether the meta key sends a leading escape or not."
+	},
+	"HTERM_PREF_MOUSE_PASTE_BUTTON": {
+		"description": "Help text shown for the hterm 'mouse-paste-button' preference.",
+		"message": "Mouse paste button, or null to autodetect.\n\nFor autodetect, we'll use the middle mouse button for non-X11 platforms (including Chrome OS).  On X11, we'll use the right mouse button (since the native window manager should paste via the middle mouse button).\n\n0 == left (primary) button.\n1 == middle (auxiliary) button.\n2 == right (secondary) button.\n\nThis option is activate independent of the \"mouse-right-click-paste\" setting.\n\nNote: This will handle left & right handed mice correctly."
+	},
+	"HTERM_PREF_MOUSE_RIGHT_CLICK_PASTE": {
+		"description": "Help text shown for the hterm 'mouse-right-click-paste' preference.",
+		"message": "Paste on right mouse button clicks.\n\nThis option is activate independent of the \"mouse-paste-button\" setting.\n\nNote: This will handle left & right handed mice correctly."
+	},
+	"HTERM_PREF_PAGE_KEYS_SCROLL": {
+		"description": "Help text shown for the hterm 'page-keys-scroll' preference.",
+		"message": "If true, page up/down will control the terminal scrollbar and shift page up/down will send the VT keycodes.  If false then page up/down sends VT codes and shift page up/down scrolls."
+	},
+	"HTERM_PREF_PASS_ALT_NUMBER": {
+		"description": "Help text shown for the hterm 'pass-alt-number' preference.",
+		"message": "Set whether we should pass Alt-1..9 to the browser.\n\nThis is handy when running hterm in a browser tab, so that you don't lose Chrome's \"switch to tab\" keyboard accelerators.  When not running in a tab it's better to send these keys to the host so they can be used in vim or emacs.\n\nIf true, Alt-1..9 will be handled by the browser.  If false, Alt-1..9 will be sent to the host.  If null, autodetect based on browser platform and window type."
+	},
+	"HTERM_PREF_PASS_CTRL_NUMBER": {
+		"description": "Help text shown for the hterm 'pass-ctrl-number' preference.",
+		"message": "Set whether we should pass Ctrl-1..9 to the browser.\n\nThis is handy when running hterm in a browser tab, so that you don't lose Chrome's \"switch to tab\" keyboard accelerators.  When not running in a tab it's better to send these keys to the host so they can be used in vim or emacs.\n\nIf true, Ctrl-1..9 will be handled by the browser.  If false, Ctrl-1..9 will be sent to the host.  If null, autodetect based on browser platform and window type."
+	},
+	"HTERM_PREF_PASS_META_NUMBER": {
+		"description": "Help text shown for the hterm 'pass-meta-number' preference.",
+		"message": "Set whether we should pass Meta-1..9 to the browser.\n\nThis is handy when running hterm in a browser tab, so that you don't lose Chrome's \"switch to tab\" keyboard accelerators.  When not running in a tab it's better to send these keys to the host so they can be used in vim or emacs.\n\nIf true, Meta-1..9 will be handled by the browser.  If false, Meta-1..9 will be sent to the host.  If null, autodetect based on browser platform and window type."
+	},
+	"HTERM_PREF_PASS_META_V": {
+		"description": "Help text shown for the hterm 'pass-meta-v' preference.",
+		"message": "Set whether meta-V gets passed to host."
+	},
+	"HTERM_PREF_RECEIVE_ENCODING": {
+		"description": "Help text shown for the hterm 'receive-encoding' preference.",
+		"message": "Set the expected encoding for data received from the host.\n\nValid values are 'utf-8' and 'raw'."
+	},
+	"HTERM_PREF_SCROLLBAR_VISIBLE": {
+		"description": "Help text shown for the hterm 'scrollbar-visible' preference.",
+		"message": "The vertical scrollbar mode."
+	},
+	"HTERM_PREF_SCROLL_ON_KEYSTROKE": {
+		"description": "Help text shown for the hterm 'scroll-on-keystroke' preference.",
+		"message": "If true, scroll to the bottom on any keystroke."
+	},
+	"HTERM_PREF_SCROLL_ON_OUTPUT": {
+		"description": "Help text shown for the hterm 'scroll-on-output' preference.",
+		"message": "If true, scroll to the bottom on terminal output."
+	},
+	"HTERM_PREF_SCROLL_WHEEL_MAY_SEND_ARROW_KEYS": {
+		"description": "Help text shown for the hterm 'scroll-wheel-may-send-arrow-keys' preference.",
+		"message": "When using the alternative screen buffer, and DECCKM (Application Cursor Keys) is active, mouse wheel scroll events will emulate arrow keys.\n\nIt can be temporarily disabled by holding the shift key.\n\nThis frequently comes up when using pagers (less) or reading man pages or text editors (vi/nano) or using screen/tmux."
+	},
+	"HTERM_PREF_SCROLL_WHEEL_MOVE_MULTIPLIER": {
+		"description": "Help text shown for the hterm 'scroll-wheel-move-multiplier' preference.",
+		"message": "The multiplier for the pixel delta in wheel events caused by the scroll wheel. Alters how fast the page scrolls."
+	},
+	"HTERM_PREF_SEND_ENCODING": {
+		"description": "Help text shown for the hterm 'send-encoding' preference.",
+		"message": "Set the encoding for data sent to host."
+	},
+	"HTERM_PREF_SHIFT_INSERT_PASTE": {
+		"description": "Help text shown for the hterm 'shift-insert-paste' preference.",
+		"message": "Shift + Insert pastes if true, sent to host if false."
+	},
+	"HTERM_PREF_TERMINAL_ENCODING": {
+		"description": "Help text shown for the hterm 'terminal-encoding' preference.",
+		"message": "The default terminal encoding (DOCS).\n\nISO-2022 enables character map translations (like graphics maps).\nUTF-8 disables support for those.\n\nThe locked variant means the encoding cannot be changed at runtime via terminal escape sequences.\n\nYou should stick with UTF-8 unless you notice broken rendering with legacy applications."
+	},
+	"HTERM_PREF_USER_CSS": {
+		"description": "Help text shown for the hterm 'user-css' preference.",
+		"message": "URL of user stylesheet to include in the terminal document."
+	},
+	"HTERM_PREF_USER_CSS_TEXT": {
+		"description": "Help text shown for the hterm 'user-css-text' preference.",
+		"message": "Custom CSS text for styling the terminal."
+	},
+	"HTERM_PREF_USE_DEFAULT_WINDOW_COPY": {
+		"description": "Help text shown for the hterm 'use-default-window-copy' preference.",
+		"message": "Whether to use the default window copy behavior"
+	},
+	"HTERM_PREF_WORD_BREAK_MATCH_LEFT": {
+		"description": "Help text shown for the hterm 'word-break-match-left' preference.",
+		"message": "Regular expression to halt matching to the left (start) of a selection.\n\nNormally this is a character class to reject specific characters.\nWe allow \"~\" and \".\" by default as paths frequently start with those."
+	},
+	"HTERM_PREF_WORD_BREAK_MATCH_MIDDLE": {
+		"description": "Help text shown for the hterm 'word-break-match-middle' preference.",
+		"message": "Regular expression to match all the characters in the middle.\n\nNormally this is a character class to reject specific characters.\n\nUsed to expand the selection surrounding the starting point."
+	},
+	"HTERM_PREF_WORD_BREAK_MATCH_RIGHT": {
+		"description": "Help text shown for the hterm 'word-break-match-right' preference.",
+		"message": "Regular expression to halt matching to the right (end) of a selection.\n\nNormally this is a character class to reject specific characters."
+	},
+	"IDENTITY_LABEL": {
+		"description": "Label for the identity field. The identity is a SSH private key filename used to authenticate with servers.",
+		"message": "Identity"
+	},
+	"IMPORT_LINK_ARIA_LABEL": {
+		"description": "The aria-label for the Import link.",
+		"message": "file import"
+	},
+	"IMPORT_LINK_LABEL": {
+		"description": "Label for the identity import button. It will trigger an 'open file' dialog so users can select a file to import. The identity is a SSH private key file used to authenticate with servers.",
+		"message": "Import..."
+	},
+	"INITIALIZING_RELAY": {
+		"description": "Text displayed in the terminal when the user is connecting through a relay server (which is like a web proxy for connections). This shows the host used to look up the relay server system.",
+		"message": "Looking up relay server using: $HOST$",
+		"placeholders": {
+			"host": {
+				"content": "$1",
+				"example": "proxy.example.com"
+			}
+		}
+	},
+	"JSON_PARSE_ERROR": {
+		"description": "Error message shown when parsing JSON data failed. The $KEY$ is a preference name, and the quote style may be changed as needed. $ERROR$ is the failure message. Neither are translated currently.",
+		"message": "Could not parse JSON in '$KEY$': $ERROR$",
+		"placeholders": {
+			"error": {
+				"content": "$2",
+				"example": "SyntaxError: Unexpected end of JSON input"
+			},
+			"key": {
+				"content": "$1",
+				"example": "cursor-blink"
+			}
+		}
+	},
+	"KNOWN_HOSTS_EMPTY": {
+		"description": "Message displayed when there are no hosts to delete.",
+		"message": "No known hosts, nothing to forget."
+	},
+	"KNOWN_HOSTS_PROMPT": {
+		"description": "Prompt displayed by the ssh-forget-host command",
+		"message": "Please select a host to forget [1-$COUNT$]: ",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "10"
+			}
+		}
+	},
+	"KNOWN_HOSTS_TITLE": {
+		"description": "Header text displayed before the list of known hosts.",
+		"message": "Known hosts:"
+	},
+	"LOADING_LABEL": {
+		"description": "The text displayed in the identity dropdown list while we load identities (which are SSH private key filenames used to authenticate with servers).",
+		"message": "Loading..."
+	},
+	"MISSING_PARAM": {
+		"description": "Error message displayed when a command is missing a parameter.",
+		"message": "Missing parameter: $NAME$",
+		"placeholders": {
+			"name": {
+				"content": "$1",
+				"example": "username"
+			}
+		}
+	},
+	"MOUNTED_MESSAGE": {
+		"description": "Message displayed after a file system is mounted",
+		"message": "Mounted!"
+	},
+	"MOUNT_BUTTON_LABEL": {
+		"description": "The label for the mount button. Used to access (mount) remote directories over SSH.",
+		"message": "SFTP Mount"
+	},
+	"MOUNT_PATH_LABEL": {
+		"description": "Label for the mount path field. This is the remote directory used for SFTP mounts.",
+		"message": "Mount Path"
+	},
+	"NOTIFY_COPY": {
+		"description": "Short status message displayed in a terminal overlay when text is automatically copied to the clipboard.",
+		"message": "Selection Copied"
+	},
+	"OK_BUTTON_LABEL": {
+		"description": "The label for the OK button in dialogs.",
+		"message": "OK"
+	},
+	"OMNIBOX_DEFAULT": {
+		"description": "Default help text as a tip in the omnibox. Do not translate the <url> and <match> tags. The 'user@hostname[:port]' may be translated, but it should keep the 'username' and 'hostname' together with an @ sign, and the : before the 'port'.",
+		"message": "<url><match>user@hostname[:port]</match></url> Connect to a saved profile or a new ssh system"
+	},
+	"OPEN_AS_WINDOW_TIP": {
+		"description": "Message displayed to users who are running Crosh in a tab. The [Pro Tip] should be localized (it is slang in the computing world), but can be localized as just 'tip' if easier.",
+		"message": "[Pro Tip] Use 'Open as Window' or 'Fullscreen' to prevent Ctrl-W from closing your terminal!\n[Pro Tip] See $URL$ for more information.",
+		"placeholders": {
+			"url": {
+				"content": "$1",
+				"example": "https://goo.gl/mHrbej"
+			}
+		}
+	},
+	"OPTIONS_BUTTON_LABEL": {
+		"description": "The label for the options button.",
+		"message": "Options"
+	},
+	"PLUGIN_LOADING": {
+		"description": "Status message displayed while loading the plugin.",
+		"message": "Loading NaCl plugin..."
+	},
+	"PLUGIN_LOADING_COMPLETE": {
+		"description": "Appended to PLUGIN_LOADING message when loading is complete.",
+		"message": " done."
+	},
+	"PLUGIN_LOADING_FAILED": {
+		"description": "Appended to PLUGIN_LOADING message when loading has failed.",
+		"message": " failed! :("
+	},
+	"PREFERENCES_HEADER": {
+		"description": "Friendly message shown on the preferences (e.g. colors, fonts, etc...) editing page.",
+		"message": "Profile Settings"
+	},
+	"PREFERENCES_RESET": {
+		"description": "Message displayed after all preferences (e.g. colors, fonts, etc...) are reset.",
+		"message": "All preferences reset!"
+	},
+	"PREF_BACKUP_FILENAME": {
+		"description": "Default filename for the preferences backup file. The filename should be translated, but the '.json' suffix should be retained.",
+		"message": "Crosh Backup.json"
+	},
+	"RECONNECT_MESSAGE": {
+		"description": "Message displayed after a connection closes. Do not translate the (R), (C), or (X) fields as they are keyboard shortcuts. Placing them after the word is OK like: Exit (X).",
+		"message": "(R)econnect, (C)hoose another connection, or E(x)it?"
+	},
+	"RELAY_OPTIONS_ERROR": {
+		"description": "Error message shown when a user specified option is invalid.",
+		"message": "Unknown relay option: $OPTION$",
+		"placeholders": {
+			"option": {
+				"content": "$1",
+				"example": "--foobar"
+			}
+		}
+	},
+	"RELAY_RETRY": {
+		"description": "Displayed in a text overlay when we experience an error talking to the relay server (which is like a web proxy for connections).",
+		"message": "Retrying..."
+	},
+	"REQUEST_PIN_PROMPT": {
+		"description": "Prompt shown when the user is requested to enter a smart card's PIN.",
+		"message": "Enter PIN to unlock key $FINGERPRINT$ on '$READER$' ($NUM_TRIES$ tries remaining): ",
+		"placeholders": {
+			"fingerprint": {
+				"content": "$1",
+				"example": "1234ABCD"
+			},
+			"num_tries": {
+				"content": "$3",
+				"example": "3"
+			},
+			"reader": {
+				"content": "$2",
+				"example": "OpenPGP card reader"
+			}
+		}
+	},
+	"RESTORE_PREFS": {
+		"description": "Label for the link in the options page that lets the user restore their preferences (e.g. colors, font, etc...).",
+		"message": "Restore Backup"
+	},
+	"SHORTCUT_LIST_ARIA_LABEL": {
+		"description": "Text use as the aria-label for the 'shortcut-list'.",
+		"message": "saved connections"
+	},
+	"SMART_CARD_CONNECTOR_NOT_INSTALLED": {
+		"description": "Error message shown when 'gsc' SSH agent backend is used but the Smart Card Connector app is not installed.",
+		"message": "Please install the Smart Card Connector app: $URL$",
+		"placeholders": {
+			"url": {
+				"content": "$1",
+				"example": "https://chrome.google.com/webstore/detail/khpfeaanjngmcnplbdlpegiifgpfgdco"
+			}
+		}
+	},
+	"SSH_ARGSTR_LABEL": {
+		"description": "Label for the optional ssh arguments field. These are command line flags to the ssh program itself.",
+		"message": "SSH Arguments"
+	},
+	"TERMINAL_PREVIEW_LABEL": {
+		"description": "Label for the preview window that allows users to preview their preferences (like color and font choices).",
+		"message": "Preview"
+	},
+	"TERMINAL_PROFILE_LABEL": {
+		"description": "Label for the current terminal emulator profile name. Profiles are used to customize things like color and fonts.",
+		"message": "Current profile"
+	},
+	"TIP_1": {
+		"description": "Helpful tip shown to user advertising features",
+		"message": "You can hold Ctrl (Cmd on macOS) while clicking on links to open them!"
+	},
+	"TIP_10": {
+		"description": "Helpful tip shown to user advertising features",
+		"message": "When running in a window, Ctrl-Shift-N can open another session."
+	},
+	"TIP_11": {
+		"description": "Helpful tip shown to user advertising features. 'rebind' means changing the behavior of a specific shortcut.",
+		"message": "You can rebind keys/shortcuts: https://goo.gl/LWRndr"
+	},
+	"TIP_12": {
+		"description": "Helpful tip shown to user advertising features. Do not translate 'Yubikeys' as it's a product name.",
+		"message": "Use Yubikeys and other smart cards for ssh auth: https://goo.gl/3ZEU1w"
+	},
+	"TIP_13": {
+		"description": "Helpful tip shown to user advertising features.",
+		"message": "Display images inline: https://goo.gl/MnSysj"
+	},
+	"TIP_2": {
+		"description": "Helpful tip shown to user advertising features. Do not translate 'hterm-notify' as it's the name of a program.",
+		"message": "Display notifications in the browser using hterm-notify: https://goo.gl/ZNxGdF"
+	},
+	"TIP_3": {
+		"description": "Helpful tip shown to user advertising features. Do not translate the 'ssh' string, but '<profile name>' can be. It is a user-defined description for their saved connections.",
+		"message": "Connect from the omnibox by typing 'ssh <profile name>': https://goo.gl/V7o8ki"
+	},
+	"TIP_4": {
+		"description": "Helpful tip shown to user advertising features. 'SFTP Mount' and 'Connect' refer to button labels and should be translated using the same text as the MOUNT_BUTTON_LABEL and CONNECT_BUTTON_LABEL messages.",
+		"message": "Chrome OS can mount file systems via SFTP and browse via the Files app. Use 'SFTP Mount' instead of 'Connect'."
+	},
+	"TIP_5": {
+		"description": "Helpful tip shown to user advertising features. Do not translate the 'ssh://' part as it refers to a web link.",
+		"message": "Connect using ssh:// links in web pages, or save a bookmark: https://goo.gl/zS8EZD"
+	},
+	"TIP_6": {
+		"description": "Helpful tip shown to user advertising features",
+		"message": "Color your output/prompt using basic 16 colors & 256 colors & full 24-bit colors: http://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html"
+	},
+	"TIP_7": {
+		"description": "Helpful tip shown to user advertising features. Do not translate 'emacs' or 'vim' (they are the names of text editors), and do not translate 'OSC-52' (it refers to a terminal specification).",
+		"message": "Copy to your clipboard from emacs/vim/etc... using OSC-52: https://goo.gl/XSnyLo"
+	},
+	"TIP_8": {
+		"description": "Helpful tip shown to user advertising features",
+		"message": "Chat with fellow hterm/Secure Shell users via chromium-hterm@chromium.org: https://goo.gl/RYHiK"
+	},
+	"TIP_9": {
+		"description": "Helpful tip shown to user advertising features",
+		"message": "Found a bug?  Request a new feature?  Let us know: https://goo.gl/vb94JY"
+	},
+	"UNEXPECTED_ERROR": {
+		"description": "Generic message displayed when we encounter an unexpected error.",
+		"message": "An unexpected error occurred, please check the JavaScript console for more details."
+	},
+	"UNKNOWN_SSH_CLIENT_VERSION": {
+		"description": "Displayed when the version requested by the user is not supported.",
+		"message": "Unknown SSH version: $VER$",
+		"placeholders": {
+			"ver": {
+				"content": "$1",
+				"example": "pnacl-openssh-7.4p1"
+			}
+		}
+	},
+	"UNMOUNT_BUTTON_LABEL": {
+		"description": "The label for the unmount button. Used to access (mount) remote directories over SSH.",
+		"message": "Unmount SFTP"
+	},
+	"UPDATE_AVAILABLE_TOOLTIP": {
+		"description": "A tooltip shown for the chip that indicates an update is available",
+		"message": "An update is available. Please close all windows."
+	},
+	"WELCOME_CHANGELOG": {
+		"description": "A link to the ChangeLog file, displayed at startup. All the text here may be localized as makes sense.",
+		"message": "ChangeLog/release notes: $URL$",
+		"placeholders": {
+			"url": {
+				"content": "$1",
+				"example": "https://goo.gl/YnmXOs"
+			}
+		}
+	},
+	"WELCOME_FAQ": {
+		"description": "A link to the frequently asked questions, displayed at startup",
+		"message": "Answers to Frequently Asked Questions: $URL$ (ctrl+click on links to open)",
+		"placeholders": {
+			"url": {
+				"content": "$1",
+				"example": "https://goo.gl/muppJj"
+			}
+		}
+	},
+	"WELCOME_RELEASE_HIGHLIGHTS": {
+		"description": "A header for a list of important changes, displayed at startup",
+		"message": "Major changes since $VER$:",
+		"placeholders": {
+			"ver": {
+				"content": "$1",
+				"example": "0.8.35.6"
+			}
+		}
+	},
+	"WELCOME_TIP_OF_DAY": {
+		"description": "Random useful tip displayed to the user at startup",
+		"message": "Random Pro Tip #$NUM$: $TIP$",
+		"placeholders": {
+			"num": {
+				"content": "$1",
+				"example": "22"
+			},
+			"tip": {
+				"content": "$2",
+				"example": "Did you know you can resize the window?"
+			}
+		}
+	},
+	"WELCOME_VERSION": {
+		"description": "Message displayed to the user when the application is first launched",
+		"message": "Welcome to $NAME$ version $VERSION$.",
+		"placeholders": {
+			"name": {
+				"content": "$1",
+				"example": "Crosh"
+			},
+			"version": {
+				"content": "$2",
+				"example": "1.0"
+			}
+		}
+	},
+	"ZOOM_WARNING": {
+		"description": "Shown in the top/right corner if the web browser zoom setting is not set to 100%. It's a tip to navigate the Chrome browser's menu.",
+		"message": "Please set Chrome Menu->Zoom to 100%"
+	}
 }
