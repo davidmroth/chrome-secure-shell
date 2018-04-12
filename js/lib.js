@@ -8203,9 +8203,7 @@ hterm.PreferenceManager.categoryDefinitions = [
   { id: hterm.PreferenceManager.categories.Extensions,
     text: 'Extensions'},
   { id: hterm.PreferenceManager.categories.Miscellaneous,
-    text: 'Misc.'},
-  { id: hterm.PreferenceManager.categories.Crostini,
-    text: 'Crostini'}
+    text: 'Misc.'}
 ];
 
 
@@ -8635,25 +8633,7 @@ hterm.PreferenceManager.defaultPreferences = {
   [hterm.PreferenceManager.categories.Extensions, null, 'tristate',
    'Whether to allow the remote side to display images in the terminal.\n' +
    '\n' +
-   'By default, we prompt until a choice is made.'],
-  
-  'chroot-image-name':
-  [hterm.PreferenceManager.categories.Crostini, 'development', 'string',
-   'Name of the Crostini image.\n' +
-   '\n' +
-   'By default, this field will be set to \'devevlopment\'.'],
-
-  'chroot-container-name':
-  [hterm.PreferenceManager.categories.Crostini, 'stretch', 'string',
-   'Name of Crostini container.\n' +
-   '\n' +
-   'By default, this field will be set to \'stretch\'.'],
-
-  'chroot-user-name':
-  [hterm.PreferenceManager.categories.Crostini, 'user', 'string',
-   'User that will be logged into the container.\n' +
-   '\n' +
-   'By default, this field will be set to \'user\'.'],
+   'By default, we prompt until a choice is made.']
 };
 
 hterm.PreferenceManager.prototype = Object.create(lib.PreferenceManager.prototype);

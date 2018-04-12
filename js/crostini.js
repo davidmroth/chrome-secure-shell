@@ -26,7 +26,7 @@ CmdQueue.prototype.add = function(item) {
     var check = ()=> {
       if (this.cmdLength) {
         this.exec(this.get());
-        setTimeout(check, 200);
+        setTimeout(check, 300);
       }
     }
 
@@ -53,6 +53,7 @@ function Crostini() {
     this.term = term;
     this.pref = term.io.terminal_.prefs_;
     this.cmdWithDelay = new CmdQueue(term);
+
     this.refreshUI();
   };
 
@@ -60,7 +61,7 @@ function Crostini() {
     let cmdList = {
       "container": [
         "vmc start " + this.pref.get('chroot-image-name'),
-        "run_container.sh --container_name=" + this.pref.get('chroot-image-name') + " --user=" + this.pref.get('chroot-user-name') + " --shell"
+        "run_container.sh --container_name=" + this.pref.get('chroot-container-name') + " --user=" + this.pref.get('chroot-user-name') + " --shell"
       ]
     };
 
@@ -82,15 +83,6 @@ function Crostini() {
     let button = document.createElement("button");
     toolbar.id = "toolbar";
 
-    /*
-    Object.assign(toolbar.style, {
-      position: "absolute",
-      left: 0,
-      top: 0,
-      right: 0
-    });
-    */
-
     document.querySelector("#terminal").prepend(toolbar);
     document.querySelector("iframe").style.top = "25px";
     document.querySelector("iframe").style.height = "calc(100% - 30px)";
@@ -98,3 +90,29 @@ function Crostini() {
     this.buildCommandButtons(toolbar, button);
   }
 }
+
+
+hterm.PreferenceManager.categoryDefinitions.push({
+  id: hterm.PreferenceManager.categories.Crostini,
+  text: 'Crostini'
+});
+
+hterm.PreferenceManager.defaultPreferences = Object.assign(hterm.PreferenceManager.defaultPreferences, {
+  'chroot-image-name':
+  [hterm.PreferenceManager.categories.Crostini, 'development', 'string',
+   'Name of the Crostini image.\n' +
+   '\n' +
+   'By default, this field will be set to \'devevlopment\'.'],
+
+  'chroot-container-name':
+  [hterm.PreferenceManager.categories.Crostini, 'stretch', 'string',
+   'Name of Crostini container.\n' +
+   '\n' +
+   'By default, this field will be set to \'stretch\'.'],
+
+  'chroot-user-name':
+  [hterm.PreferenceManager.categories.Crostini, 'user', 'string',
+   'User that will be logged into the container.\n' +
+   '\n' +
+   'By default, this field will be set to \'user\'.']
+});
