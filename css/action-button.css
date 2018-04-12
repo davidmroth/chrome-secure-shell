@@ -1,0 +1,75 @@
+.action_button-wrapper {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 0 3.5em 3.5em 0;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.action_button-wrapper div {
+    width: 1.7em;
+    height: 1.7em;
+    font-size: 2em;
+    line-height: 1.7em;
+    text-align: center;
+    background: white;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 1px 1px 1px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 1px 1px 1px rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px 1px rgba(0,0,0,.1)
+}
+
+.action_button-wrapper .action_button-menu-loader {
+    color: white;
+    background: cornflowerblue
+}
+
+.action_button-wrapper div:not(:last-child) {
+    margin-bottom: .3em
+}
+
+.action_button-wrapper .action_button-menu-item {
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.4s,max-height 0s 0.2s
+}
+
+.action_button-wrapper:hover .action_button-menu-item {
+    opacity: 1;
+    max-height: 100%;
+    transition: opacity 0.8s,max-height 3s
+}
+
+.action_button-wrapper .action_button-menu-item .action_button-menu-item-label-wrapper {
+    visibility: hidden;
+    position: fixed;
+    font-size: .5em;
+    right: 7em;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    transform: translateX(.5em)
+}
+
+.action_button-wrapper .action_button-menu-item:hover .action_button-menu-item-label-wrapper {
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+    transform: translateX(-.5em)
+}
+
+.action_button-wrapper .action_button-menu-item .action_button-menu-item-label-wrapper .action_button-menu-item-label {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #8B8E8F;
+    padding: 5px;
+    color: white
+}
